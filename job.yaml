@@ -1,0 +1,25 @@
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migration-job
+  namespace: sre-13335-test
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  template:
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        ports:
+        - containerPort: 80
+        command: 
+        - "/bin/sh"
+        - "-ec" 
+        - "sleep 1000"
+        - exit 1
+      restartPolicy: Never
+  backoffLimit: 4
+
