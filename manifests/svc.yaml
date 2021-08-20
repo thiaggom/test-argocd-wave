@@ -6,6 +6,7 @@ metadata:
   name: guestbook-ui
   namespace: sre-13335-test
 spec:
+  type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
