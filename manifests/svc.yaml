@@ -5,6 +5,8 @@ kind: Service
 metadata:
   name: guestbook-ui
   namespace: sre-13335-test
+  annotations:
+    version: 1
 spec:
   ports:
   - port: 80
