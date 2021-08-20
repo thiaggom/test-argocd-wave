@@ -5,7 +5,8 @@ metadata:
   generateName: migration-job
   namespace: sre-13335-test
   annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+    # argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/hook: PreSync
 spec:
   template:
     spec:
