@@ -1,5 +1,4 @@
 ---
-
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -13,13 +12,6 @@ spec:
       containers:
       - name: busybox
         image: busybox
-        ports:
-        - containerPort: 80
-        command: 
-        - "/bin/sh"
-        - "-ec" 
-        - "sleep 1000"
-        - exit 1
+        command: ['sh', '-c', 'echo The app is running! && sleep 30 && exit 1']
       restartPolicy: Never
-  backoffLimit: 4
-
+  backoffLimit: 0
