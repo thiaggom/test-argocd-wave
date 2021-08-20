@@ -15,6 +15,6 @@ spec:
       containers:
       - name: busybox
         image: busybox
-        command: ['sh', '-c', 'echo The app is running! && sleep 60']
+        command: ['sh', '-c', 'echo The app is running! && sleep 120 && exit 1']
       restartPolicy: Never
   backoffLimit: 0
