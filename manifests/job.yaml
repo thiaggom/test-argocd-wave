@@ -3,7 +3,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   # generateName: migration-job
-  name: migration-job-2
+  name: migration-job-3
   namespace: sre-13335-test
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
@@ -14,6 +14,6 @@ spec:
       containers:
       - name: busybox
         image: busybox
-        command: ['sh', '-c', 'echo The app is running! && sleep 60']
+        command: ['sh', '-c', 'echo The app is running! && sleep 60 && exit 1']
       restartPolicy: Never
   backoffLimit: 0

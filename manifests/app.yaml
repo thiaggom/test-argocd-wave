@@ -5,6 +5,8 @@ kind: Deployment
 metadata:
   name: guestbook-ui
   namespace: sre-13335-test
+  annotations:
+    version: 2
 spec:
   replicas: 1
   revisionHistoryLimit: 3
