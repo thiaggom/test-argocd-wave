@@ -2,19 +2,35 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: migration-job
-  # name: migration-job-4
+  # generateName: migration-job
+  name: migration-job-1
   namespace: sre-13335-test
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    # argocd.argoproj.io/hook: Sync
+    # argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   template:
     spec:
       containers:
       - name: busybox
         image: busybox
-        command: ['sh', '-c', 'echo The app is running! && sleep 30']
+        command: ['sh', '-c']
+        args:
+        - |
+          /scripts/migration.sh
+          trap "touch /lifecycle/main-terminated" EXIT
+        volumeMounts:
+          - name: lifecycle
+            mountPath: /lifecycle
+          - name: scripts
+            moutnPath: /scripts
       restartPolicy: Never
+      volumes:
+      - name: lifecycle
+        emptyDir: {}
+      - name: scripts
+        configMap:
+          name: migration
+        
   backoffLimit: 0
