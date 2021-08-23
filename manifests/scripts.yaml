@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: migration
+  namespace: sre-13335-test
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+
+data:
+  migration.sh: |-
+    echo "starting script"
+
+    sleep 2
+
+    echo "doing some stuff"
+    exit 125
+
+    sleep 3
+
+    echo "last line"
+    
