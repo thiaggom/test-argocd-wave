@@ -24,7 +24,7 @@ spec:
           - name: lifecycle
             mountPath: /lifecycle
           - name: scripts
-            moutnPath: /scripts
+            mountPath: /scripts
       restartPolicy: Never
       volumes:
       - name: lifecycle
