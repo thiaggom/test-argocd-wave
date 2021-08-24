@@ -3,11 +3,11 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   # generateName: migration-job
-  name: migration-job-4
+  name: migration-job-5
   namespace: sre-13335-test
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
-    version: "3"
+    version: "5"
     # argocd.argoproj.io/hook: Sync
     # argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
@@ -20,7 +20,7 @@ spec:
         args:
         - |
           /scripts/migration.sh
-#          trap "touch /lifecycle/main-terminated" EXIT
+          trap "touch /lifecycle/main-terminated" EXIT
         volumeMounts:
           - name: lifecycle
             mountPath: /lifecycle
