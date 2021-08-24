@@ -15,7 +15,6 @@ data:
     sleep 2
 
     echo "doing some stuff"
-#    exit 125
 
     sleep 3
 
