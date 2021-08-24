@@ -6,7 +6,7 @@ metadata:
   name: guestbook-ui
   namespace: sre-13335-test
   annotations:
-    version: "3"
+    version: "4"
 spec:
   replicas: 1
   revisionHistoryLimit: 3
