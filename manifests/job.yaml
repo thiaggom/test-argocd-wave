@@ -3,11 +3,11 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   # generateName: migration-job
-  name: migration-job-2
+  name: migration-job-3
   namespace: sre-13335-test
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
-    version: "1"
+    version: "3"
     # argocd.argoproj.io/hook: Sync
     # argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
