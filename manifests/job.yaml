@@ -3,7 +3,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   # generateName: migration-job
-  name: migration-job-5
+  name: migration-job-1
   namespace: sre-13335-test
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
@@ -20,7 +20,7 @@ spec:
         args:
         - |
           /scripts/migration.sh
-          trap "touch /lifecycle/main-terminated" EXIT
+          trap "CMD_STATUS=$? touch /lifecycle/main-terminated; exit $CMD_STATUS" EXIT
         volumeMounts:
           - name: lifecycle
             mountPath: /lifecycle
