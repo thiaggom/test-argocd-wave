@@ -12,11 +12,12 @@ data:
   migration.sh: |-
     echo "starting script"
 
-    sleep 2
+    sleep 3
 
     echo "doing some stuff"
+
+    sleep 300
     exit 123
-    sleep 3
 
     echo "last line"
     

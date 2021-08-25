@@ -3,11 +3,11 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   # generateName: migration-job
-  name: migration-job-1
+  name: migration-job-2
   namespace: sre-13335-test
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
-    version: "1"
+    version: "2"
     # argocd.argoproj.io/hook: Sync
     # argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
@@ -20,7 +20,24 @@ spec:
         args:
         - |
           /scripts/migration.sh
-          trap "CMD_STATUS=$? touch /lifecycle/main-terminated; exit $CMD_STATUS" EXIT
+        volumeMounts:
+          - name: lifecycle
+            mountPath: /lifecycle
+          - name: scripts
+            mountPath: /scripts
+      - name: busybox2
+        image: busybox
+        command: ['sh', '-c']
+        args:
+        - |
+          echo 'starging second container'
+          while true; do
+            if [[ -z "$(ps -aux | grep /scripts/migration.sh)"; then
+              exit;
+            fi;
+            echo 'migration still running...'
+            sleep 1
+          done;  
         volumeMounts:
           - name: lifecycle
             mountPath: /lifecycle
