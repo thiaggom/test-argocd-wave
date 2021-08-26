@@ -16,7 +16,7 @@ data:
 
     echo "doing some stuff"
 
-    sleep 60
+    sleep 180
     exit 123
 
     echo "last line"
